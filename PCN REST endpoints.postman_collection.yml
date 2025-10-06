@@ -81,6 +81,26 @@ components:
         type: integer
         minimum: 0
       description: first n items to skip
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    ServerError:
+      description: Unexpected error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    BinaryResponse:
+      description: Successful response
+      content:
+        application/octet-stream:
+          schema:
+            type: string
+            format: binary
   schemas:
     ErrorResponse:
       description: Error response from server
@@ -6411,6 +6431,187 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/file_resource'
+    UploadInitiationRequest:
+      type: object
+      properties:
+        fileName:
+          type: string
+          description: file name
+        contentType:
+          type: string
+          description: mime content type
+        fileSize:
+          type: integer
+          description: file size in bytes
+        chunkSize:
+          type: integer
+          description: prefer chunk size
+        sha256:
+          type: integer
+          description: SHA-256 hash of file
+        uploadLocation:
+          $ref: '#/components/schemas/UploadLocation'
+        expiresInSeconds:
+          type: integer
+          description: number of seconds before upload session expires, default is 86400 seconds (24 hour)
+    UploadInitiationResponse:
+      type: object
+      properties:
+        uploadId:
+          type: string
+          description: uuid of REST_Upload record
+        chunkSize:
+          type: integer
+          description: prefer chunk size
+        expiresAt:
+          type: string
+          format: date-time
+          description: expire timestamp of upload session
+        presignedURL:
+          type: string
+          description: presigned URL for uploading file chunks
+    UploadChunkResponse:
+      type: object
+      properties:
+        uploadId:
+          type: string
+          description: uuid of REST_Upload record
+        chunkOrder:
+          type: integer
+          description: chunk sequence
+        receivedSize:
+          type: integer
+          description: actual received size in bytes
+        message:
+          type: integer
+          description: response message
+        isLastChunk:
+          type: boolean
+          description: true if this is the last chunk of the file that will trigger upload completion
+    UploadedChunk:
+      type: object
+      properties:
+        chunkOrder:
+          type: integer
+          description: chunk sequence
+        receivedSize:
+          type: integer
+          description: actual received size in bytes
+    UploadStatus:
+      type: string
+      enum:
+        - INITIATED
+        - UPLOADING
+        - PROCESSING
+        - COMPLETED
+        - CANCELED
+        - FAILED
+    UploadLocation:
+      type: string
+      enum:
+        - 'ARCHIVE'
+        - 'ATTACHMENT'
+        - 'IMAGE'
+    UploadStatusResponse:
+      type: object
+      properties:
+        uploadId:
+          type: string
+          description: uuid of REST_Upload record
+        fileName:
+          type: string
+          description: file name
+        fileSize:
+          type: integer
+          description: file size in bytes
+        imageId:
+          type: integer
+          description: image id if the upload location is image
+        chunkSize:
+          type: integer
+          description: prefer chunk size
+        status:
+          $ref: '#/components/schemas/UploadStatus'
+        uploadedChunks:
+          type: array
+          items:
+            $ref: '#/components/schemas/UploadedChunk'
+        totalReceivedSize:
+          type: integer
+          description: total received size in bytes
+        message:
+          type: integer
+          description: response message
+        presignedURL:
+          type: string
+          description: presigned URL to get upload status or uploaded file
+    CopyUploadedFileRequest:
+      type: object
+      properties:
+        copyLocation:
+          $ref: '#/components/schemas/UploadLocation'
+        tableName:
+          type: string
+          description: optional table name of the destination record
+        recordId:
+          type: string
+          description: optional record id/uuid of the destination record
+    CopyUploadedFileResponse:
+      type: object
+      properties:
+        uploadId:
+          type: string
+          description: uuid of REST_Upload record
+        tableName:
+          type: string
+          description: table name of the destination record
+        recordId:
+          type: string
+          description: record id of the destination record
+        recordUU:
+          type: string
+          description: record uuid of the destination record
+        copyLocation:
+          $ref: '#/components/schemas/UploadLocation'
+        fileName:
+          type: string
+          description: name of the file being copied
+        contentType:
+          type: string
+          description: mime content type of the file being copied
+        fileSize:
+          type: integer
+          description: size of the file being copied
+    SubRequest:
+      type: object
+      properties:
+        method:
+          type: string
+          description: HTTP method for the sub-request (e.g., GET, POST)
+        path:
+          type: string
+          description: Path for the sub-request (e.g., v1/models/C_BPartner)
+        body:
+          type: object
+          description: Body of the sub-request, if applicable
+    BatchRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/SubRequest'
+    BatchResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          status:
+            type: string
+            description: HTTP status text of the sub-request (e.g., created, ok, etc)
+          statusCode:
+            type: integer
+            description: HTTP status code of the response
+          body:
+            type: object
+            description: Body of the response, if applicable
 security:
     - bearerAuth: [] # use the same name as above          
 paths:
@@ -15630,3 +15831,301 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/errorResponse' }
+  /uploads:
+    post:
+      tags:
+        - Uploads
+      summary: Initiate new upload session
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadInitiationRequest'
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadInitiationResponse'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    get:
+      tags:
+        - Uploads
+      summary: Retrieves the pending uploads from current user
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/UploadStatusResponse" }
+        '404':
+          description: no session found for uploadId
+          content:
+            application/json: {}
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /uploads/{uploadId}/chunks/{chunkOrder}:
+    put:
+      tags:
+        - Uploads
+      summary: Upload a chunk for an upload session
+      parameters:
+        - name: uploadId
+          in: path
+          schema:
+            type: string
+          description: REST_Upload uuid
+          required: true
+        - name: chunkOrder
+          in: path
+          schema:
+            type: integer
+          description: integer sequence of chunk (start from 1)
+          required: true
+        - in: header
+          name: X-Total-Chunks
+          schema:
+            type: integer
+          description: Total number of chunks for the upload session
+          required: true
+        - in: header
+          name: X-Content-SHA256
+          schema:
+            type: string
+          description: SHA-256 hash of chunk content, for content integrity verification
+          required: true
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadChunkResponse'
+        '404':
+          description: no session found for uploadId
+          content:
+            application/json: {}
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /uploads/{uploadId}:
+    get:
+      tags:
+        - Uploads
+      summary: Retrieves the current status of an ongoing or completed upload
+      parameters:
+        - name: uploadId
+          in: path
+          schema:
+            type: string
+          description: REST_Upload uuid
+          required: true
+        - name: expiresInSeconds
+          in: query
+          schema:
+            type: integer
+          description: Number of seconds after which the presigned URL expires. When provided, a presigned URL will be returned for the upload session.
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadStatusResponse'
+        '404':
+          description: no session found for uploadId
+          content:
+            application/json: {}
+        '500':
+          $ref: '#/components/responses/ServerError'
+    delete:
+      tags:
+        - Uploads
+      summary: Cancels an ongoing/completed upload, cleans up any temporarily stored chunks and associated uploaded file.
+      parameters:
+        - name: uploadId
+          in: path
+          schema:
+            type: string
+          description: REST_Upload uuid
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: response message
+        '404':
+          description: no session found for uploadId
+          content:
+            application/json: {}
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /uploads/{uploadId}/file:
+    get:
+      tags:
+        - Uploads
+      summary: Get uploaded file content as binary stream or json
+      parameters:
+        - name: uploadId
+          in: path
+          schema:
+            type: string
+          description: REST_Upload uuid
+          required: true
+        - name: json
+          in: query
+          required: false
+          schema:
+            type: string
+          description: if present, return file as json instead of as binary stream
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+            text/html:
+              schema:
+                type: string
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                    format: byte
+                    description: base64 encoded file content
+        '404':
+          description: no session found for uploadId
+          content:
+            application/json: {}
+        '400':
+          $ref: '#/components/responses/ServerError'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /uploads/{uploadId}/copy:
+    post:
+      tags:
+        - Uploads
+      summary: Copy uploaded file to attachment, image or archive (edited)
+      parameters:
+        - name: uploadId
+          in: path
+          schema:
+            type: string
+          description: REST_Upload uuid
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CopyUploadedFileRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CopyUploadedFileResponse'
+        '404':
+          description: no session found for uploadId
+          content:
+            application/json: {}
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /batch:
+    post:
+      tags:
+         - Batch
+      summary: Execute batch request
+      parameters:
+        - name: transaction
+          in: query
+          schema:
+            type: boolean
+          description: if true, all requests are processed in a single transaction (default is true)
+          required: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchResponse'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /health:
+    get:
+      tags:
+        - Health
+      summary: Health monitoring
+      parameters:
+        - name: key
+          in: query
+          required: false
+          schema:
+            type: string
+          description: optional health monitoring key, required if configure at backend
+        - name: db
+          in: query
+          required: false
+          schema:
+            type: boolean
+          description: optional flag to enable/disable database connection check. default is false
+      responses:
+        '200':
+          description: UP response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: 
+                      - UP
+                  database:
+                    type: string
+                    enum: 
+                      - connected
+        '503':
+          description: DOWN response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: 
+                      - DOWN
+                  database:
+                    type: string
+                    enum: 
+                      - disconnected
