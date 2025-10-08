@@ -6612,6 +6612,1692 @@ components:
           body:
             type: object
             description: Body of the response, if applicable
+    promptInstructions:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        name:
+          type: string
+          description: Alphanumeric identifier of the entity
+        description:
+          type: string
+          description: Optional short description of the record
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2025-10-08T15:12:07Z
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2025-10-08T15:12:09Z
+          readOnly: true
+        created_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Created By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        prompt_template:
+          type: string
+    prompts:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        name:
+          type: string
+          description: Alphanumeric identifier of the entity
+        prompt:
+          type: string
+        description:
+          type: string
+          description: Optional short description of the record
+        prompt_instruction:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Prompt Instruction'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_promptinstruction'
+        criterion:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Assertions'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_assertions'
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2025-10-08T15:14:57Z
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2025-10-08T15:14:57Z
+          readOnly: true
+        created_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Created By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+    standardRevisionPrompts:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        standard_revision:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Standard Revision'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_standardrevision'
+        prompt:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Prompt'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_prompt'
+    aiTools:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: record id
+          readOnly: true
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        name:
+          type: string
+          description: Alphanumeric identifier of the entity
+        version:
+          type: string
+          description: Numeric version with the format of Major.Minor.Revision
+        allows_multi_file:
+          type: boolean
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2025-10-08T15:19:31Z
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2025-10-08T15:19:31Z
+          readOnly: true
+        created_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Created By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        event_queue:
+          type: string
+        prompt_template:
+          type: string
+    aiEvaluationStatuses:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: record id
+          readOnly: true
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        value:
+          type: string
+          description: Search key for the record in the format required - must be unique
+        name:
+          type: string
+          description: Alphanumeric identifier of the entity
+        description:
+          type: string
+          description: Optional short description of the record
+    aiEvaluations:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        name:
+          type: string
+          description: Alphanumeric identifier of the entity
+        description:
+          type: string
+          description: Optional short description of the record
+        ai_tool:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'AI Tool'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_aitool'
+        status:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Status'
+            id:
+              type: string
+              description: list item id
+              enum:
+                - 'COMPLETE'
+                - 'FINISHED'
+                - 'QUEUED'
+                - 'RUNNING'
+            identifier:
+              type: string
+              description: list item identifier
+              enum:
+                - 'COMPLETE'
+                - 'FINISHED'
+                - 'QUEUED'
+                - 'RUNNING'
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_ref_list'
+        finished:
+          type: string
+          format: date-time
+          example: 2025-10-08T15:30:31Z
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2025-10-08T15:30:32Z
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2025-10-08T15:30:32Z
+          readOnly: true
+        created_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Created By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+    aiEvaluationLookups:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        ai_evaluation:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'AI Evaluation'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_aievaluation'
+        object_type:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Table'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_table'
+        object_id:
+          type: string
+        claim_evaluation:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Evaluation'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_evaluation'
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2025-10-08T15:31:59Z
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2025-10-08T15:31:59Z
+          readOnly: true
+        created_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Created By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+    aiEvaluationChatStatuses:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: record id
+          readOnly: true
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        value:
+          type: string
+          description: Search key for the record in the format required - must be unique
+        name:
+          type: string
+          description: Alphanumeric identifier of the entity
+        description:
+          type: string
+          description: Optional short description of the record
+    aiEvaluationChats:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        ai_evaluation:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'AI Evaluation'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_aievaluation'
+        external_ai_response_id:
+          type: string
+        custom_question:
+          type: string
+        created_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Created By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2025-10-08T15:34:24Z
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2025-10-08T15:34:24Z
+          readOnly: true
+        response:
+          type: string
+        status:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Status'
+            id:
+              type: string
+              description: list item id
+              enum:
+                - 'COMPLETE'
+                - 'IN_PROGRESS'
+                - 'PENDING'
+            identifier:
+              type: string
+              description: list item identifier
+              enum:
+                - 'COMPLETE'
+                - 'IN_PROGRESS'
+                - 'PENDING'
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_ref_list'
+        index:
+          type: integer
+          description: Method of ordering records; lowest number comes first
+        prompt_instruction:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Prompt Instruction'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_promptinstruction'
+    aiDocuments:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        name:
+          type: string
+          description: Alphanumeric identifier of the entity
+        hash:
+          type: string
+        ai_evaluation:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'AI Evaluation'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_aievaluation'
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2025-10-08T15:35:42Z
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2025-10-08T15:35:42Z
+          readOnly: true
+        created_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Created By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        ai_evaluation_chat:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'AI Evaluation Chat'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_aievaluationchat'
+    aiResponses:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        response:
+          type: string
+          description: Json data
+        id:
+          type: string
+        ai_tool:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'AI Tool'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_aitool'
+    aiResultStatuses:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: record id
+          readOnly: true
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        value:
+          type: string
+          description: Search key for the record in the format required - must be unique
+        name:
+          type: string
+          description: Alphanumeric identifier of the entity
+        description:
+          type: string
+          description: Optional short description of the record
+    aiResults:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        ai_evaluation:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'AI Evaluation'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_aievaluation'
+        prompt:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Prompt'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_prompt'
+        criterion:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Assertions'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_assertions'
+        rating:
+          type: string
+        details:
+          type: string
+        status:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Status'
+            id:
+              type: string
+              description: list item id
+              enum:
+                - 'COMPLETE'
+                - 'FINISHED'
+                - 'QUEUED'
+                - 'RUNNING'
+            identifier:
+              type: string
+              description: list item identifier
+              enum:
+                - 'COMPLETE'
+                - 'FINISHED'
+                - 'QUEUED'
+                - 'RUNNING'
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_ref_list'
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2025-10-08T15:42:39Z
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2025-10-08T15:42:39Z
+          readOnly: true
+        created_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Created By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+    findingStatuses:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: record id
+          readOnly: true
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        value:
+          type: string
+          description: Search key for the record in the format required - must be unique
+        name:
+          type: string
+          description: Alphanumeric identifier of the entity
+        description:
+          type: string
+          description: Optional short description of the record
+    findings:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        criterion_evaluation:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Evaluation Assessment'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_evaluationassessment'
+        finding_type:
+          type: string
+        subtype:
+          type: string
+        description:
+          type: string
+          description: Optional short description of the record
+        status:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Status'
+            id:
+              type: string
+              description: list item id
+              enum:
+                - 'OPEN'
+                - 'RESOLVED'
+            identifier:
+              type: string
+              description: list item identifier
+              enum:
+                - 'OPEN'
+                - 'RESOLVED'
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_ref_list'
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2025-10-08T15:45:26Z
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2025-10-08T15:45:26Z
+          readOnly: true
+        due_date:
+          type: string
+          format: date
+          example: 2025-10-08
+        resolution:
+          type: string
+        resolved:
+          type: string
+          format: date-time
+          example: 2025-10-08T15:45:26Z
+        resolved_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Resolved By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+        is_critical:
+          type: boolean
+        created_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Created By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        ai_result:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'AI Result'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_airesult'
+    findingAssignees:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        finding:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Finding'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_finding'
+        assignee:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'User/Contact'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+    threadStatuses:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: record id
+          readOnly: true
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        value:
+          type: string
+          description: Search key for the record in the format required - must be unique
+        name:
+          type: string
+          description: Alphanumeric identifier of the entity
+        description:
+          type: string
+          description: Optional short description of the record
+    threads:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        topic:
+          type: string
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2025-10-08T15:52:45Z
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2025-10-08T15:52:45Z
+          readOnly: true
+        created_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Created By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        status:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Status'
+            id:
+              type: string
+              description: list item id
+              enum:
+                - 'CLOSED'
+                - 'OPEN'
+            identifier:
+              type: string
+              description: list item identifier
+              enum:
+                - 'CLOSED'
+                - 'OPEN'
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_ref_list'
+    threadUsers:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        thread:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Thread'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_thread'
+        user:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'User/Contact'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+        is_watcher:
+          type: boolean
+    threadEvaluationAssessments:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        thread:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Thread'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_thread'
+        criterion_evaluation:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Evaluation Assessment'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_evaluationassessment'
+        ai_result:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'AI Result'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_airesult'
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2025-10-08T15:55:32Z
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2025-10-08T15:55:32Z
+          readOnly: true
+        created_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Created By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+    threadFindings:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        thread:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Thread'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_thread'
+        finding:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Finding'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_finding'
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2025-10-08T15:57:01Z
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2025-10-08T15:57:01Z
+          readOnly: true
+        created_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Created By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+    threadMessages:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        thread:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Thread'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_thread'
+        message:
+          type: string
+          description: Textual Informational, Menu or Error Message
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2025-10-08T15:58:39Z
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2025-10-08T15:58:39Z
+          readOnly: true
+        created_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Created By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        index:
+          type: integer
+          description: Method of ordering records; lowest number comes first
+    threadMessageUsers:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        user:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'User/Contact'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+        message:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Thread Message'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_threadmessage'
+        read:
+          type: string
+          format: date-time
+          example: 2025-10-08T15:59:54Z
 security:
     - bearerAuth: [] # use the same name as above          
 paths:
@@ -16129,3 +17815,2788 @@ paths:
                     type: string
                     enum: 
                       - disconnected
+  /views/promptInstructions/{id}:
+    get:
+      tags:
+        - Prompt
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/promptInstructions' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - Prompt
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/promptInstructions' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/promptInstructions' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - Prompt
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/promptInstructions:
+    get:
+      tags:
+        - Prompt
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/promptInstructions' }
+    post:
+      tags:
+        - Prompt
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/promptInstructions' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/promptInstructions' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/prompts/{id}:
+    get:
+      tags:
+        - Prompt
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/prompts' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - Prompt
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/prompts' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/prompts' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - Prompt
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/prompts:
+    get:
+      tags:
+        - Prompt
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/prompts' }
+    post:
+      tags:
+        - Prompt
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/prompts' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/prompts' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/standardRevisionPrompts/{id}:
+    get:
+      tags:
+        - Prompt
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/standardRevisionPrompts' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - Prompt
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/standardRevisionPrompts' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/standardRevisionPrompts' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - Prompt
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/standardRevisionPrompts:
+    get:
+      tags:
+        - Prompt
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/standardRevisionPrompts' }
+    post:
+      tags:
+        - Prompt
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/standardRevisionPrompts' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/standardRevisionPrompts' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/aiTools/{id}:
+    get:
+      tags:
+        - AI Evaluation
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiTools' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - AI Evaluation
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiTools' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiTools' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - AI Evaluation
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/aiTools:
+    get:
+      tags:
+        - AI Evaluation
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/aiTools' }
+    post:
+      tags:
+        - AI Evaluation
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiTools' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiTools' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/aiEvaluationStatuses:
+    get:
+      tags:
+        - AI Evaluation
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/aiEvaluationStatuses' }
+  /views/aiEvaluations/{id}:
+    get:
+      tags:
+        - AI Evaluation
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiEvaluations' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - AI Evaluation
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiEvaluations' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiEvaluations' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - AI Evaluation
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/aiEvaluations:
+    get:
+      tags:
+        - AI Evaluation
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/aiEvaluations' }
+    post:
+      tags:
+        - AI Evaluation
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiEvaluations' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiEvaluations' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/aiEvaluationLookups/{id}:
+    get:
+      tags:
+        - AI Evaluation
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiEvaluationLookups' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - AI Evaluation
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiEvaluationLookups' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiEvaluationLookups' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - AI Evaluation
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/aiEvaluationLookups:
+    get:
+      tags:
+        - AI Evaluation
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/aiEvaluationLookups' }
+    post:
+      tags:
+        - AI Evaluation
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiEvaluationLookups' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiEvaluationLookups' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/aiEvaluationChatStatuses:
+    get:
+      tags:
+        - AI Evaluation
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/aiEvaluationChatStatuses' }
+  /views/aiEvaluationChats/{id}:
+    get:
+      tags:
+        - AI Evaluation
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiEvaluationChats' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - AI Evaluation
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiEvaluationChats' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiEvaluationChats' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - AI Evaluation
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/aiEvaluationChats:
+    get:
+      tags:
+        - AI Evaluation
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/aiEvaluationChats' }
+    post:
+      tags:
+        - AI Evaluation
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiEvaluationChats' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiEvaluationChats' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/aiDocuments/{id}:
+    get:
+      tags:
+        - AI Evaluation
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiDocuments' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - AI Evaluation
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiDocuments' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiDocuments' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - AI Evaluation
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/aiDocuments:
+    get:
+      tags:
+        - AI Evaluation
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/aiDocuments' }
+    post:
+      tags:
+        - AI Evaluation
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiDocuments' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiDocuments' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/aiResponses/{id}:
+    get:
+      tags:
+        - AI Evaluation
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiResponses' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - AI Evaluation
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiResponses' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiResponses' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - AI Evaluation
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/aiResponses:
+    get:
+      tags:
+        - AI Evaluation
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/aiResponses' }
+    post:
+      tags:
+        - AI Evaluation
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiResponses' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiResponses' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/aiResultStatuses:
+    get:
+      tags:
+        - AI Evaluation
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/aiResultStatuses' }
+  /views/aiResults/{id}:
+    get:
+      tags:
+        - AI Evaluation
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiResults' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - AI Evaluation
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiResults' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiResults' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - AI Evaluation
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/aiResults:
+    get:
+      tags:
+        - AI Evaluation
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/aiResults' }
+    post:
+      tags:
+        - AI Evaluation
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiResults' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/aiResults' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/findingStatuses:
+    get:
+      tags:
+        - Finding
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/findingStatuses' }
+  /views/findings/{id}:
+    get:
+      tags:
+        - Finding
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/findings' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - Finding
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/findings' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/findings' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - Finding
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/findings:
+    get:
+      tags:
+        - Finding
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/findings' }
+    post:
+      tags:
+        - Finding
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/findings' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/findings' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/findingAssignees/{id}:
+    get:
+      tags:
+        - Finding
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/findingAssignees' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - Finding
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/findingAssignees' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/findingAssignees' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - Finding
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/findingAssignees:
+    get:
+      tags:
+        - Finding
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/findingAssignees' }
+    post:
+      tags:
+        - Finding
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/findingAssignees' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/findingAssignees' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/threadStatuses:
+    get:
+      tags:
+        - Thread
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/threadStatuses' }
+  /views/threads/{id}:
+    get:
+      tags:
+        - Thread
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threads' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - Thread
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threads' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threads' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - Thread
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/threads:
+    get:
+      tags:
+        - Thread
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/threads' }
+    post:
+      tags:
+        - Thread
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threads' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threads' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/threadUsers/{id}:
+    get:
+      tags:
+        - Thread
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadUsers' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - Thread
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadUsers' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadUsers' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - Thread
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/threadUsers:
+    get:
+      tags:
+        - Thread
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/threadUsers' }
+    post:
+      tags:
+        - Thread
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadUsers' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadUsers' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/threadEvaluationAssessments/{id}:
+    get:
+      tags:
+        - Thread
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadEvaluationAssessments' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - Thread
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadEvaluationAssessments' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadEvaluationAssessments' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - Thread
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/threadEvaluationAssessments:
+    get:
+      tags:
+        - Thread
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/threadEvaluationAssessments' }
+    post:
+      tags:
+        - Thread
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadEvaluationAssessments' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadEvaluationAssessments' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/threadFindings/{id}:
+    get:
+      tags:
+        - Thread
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadFindings' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - Thread
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadFindings' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadFindings' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - Thread
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/threadFindings:
+    get:
+      tags:
+        - Thread
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/threadFindings' }
+    post:
+      tags:
+        - Thread
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadFindings' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadFindings' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/threadMessages/{id}:
+    get:
+      tags:
+        - Thread
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadMessages' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - Thread
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadMessages' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadMessages' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - Thread
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/threadMessages:
+    get:
+      tags:
+        - Thread
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/threadMessages' }
+    post:
+      tags:
+        - Thread
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadMessages' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadMessages' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/threadMessageUsers/{id}:
+    get:
+      tags:
+        - Thread
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadMessageUsers' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - Thread
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadMessageUsers' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadMessageUsers' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - Thread
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/threadMessageUsers:
+    get:
+      tags:
+        - Thread
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/threadMessageUsers' }
+    post:
+      tags:
+        - Thread
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadMessageUsers' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/threadMessageUsers' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
