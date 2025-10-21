@@ -17061,7 +17061,7 @@ paths:
   /pcn/ai-tools/prompts:
     post:
       tags:
-        - AI
+        - AI Services
       description: Query the AI tool with a prompt text and optional files
       parameters:
         - name: X-AI-Tool
@@ -17088,7 +17088,7 @@ paths:
   /pcn/ai-tools/conversations:
     post:
       tags:
-       - AI
+       - AI Services
       description: Continue conversations with AI tool with conversation histories, new prompt text and optional files
       parameters:
         - name: X-AI-Tool
@@ -17131,7 +17131,7 @@ paths:
   /pcn/ai-services/contract-evaluations:
     post:
       tags:
-        - AI
+        - AI Services
       description: Create new evaluation for a contract with optional files
       parameters:
         - name: X-Callback-URL
@@ -17183,7 +17183,7 @@ paths:
   /pnc/ai-services/evaluations/{id}/followup:
     post:
       tags:
-        - AI
+        - AI Services
       description: Follow up on an existing evaluation with a new prompt text
       parameters:
         - name: id
@@ -17230,7 +17230,7 @@ paths:
   /pnc/ai-services/evaluations/{id}:
     get:
       tags:
-        - AI
+        - AI Services
       description: Get the evaluation details and last response
       parameters:
         - name: id
@@ -17297,7 +17297,7 @@ paths:
   /pnc/ai-services/evaluations/{id}/conversations:
     get:
       tags:
-        - AI
+        - AI Services
       description: Get the evaluation details and full conversations
       parameters:
         - name: id
@@ -17382,7 +17382,7 @@ paths:
   /pnc/ai-services/evaluations/{id}/complete:
     post:
       tags:
-        - AI
+        - AI Services
       description: Complete an ongoing evaluation by evaluation id
       parameters:
         - name: id
@@ -17404,7 +17404,7 @@ paths:
   /pcn/ai-services/standard-revisions:
     post:
       tags:
-        - AI
+        - AI Services
       description: Create a new standard and standard revision from an Excel input file
       parameters:
         - name: name
@@ -17460,8 +17460,8 @@ paths:
   /pcn/ai-services/event-queue/messages:
     get:
       tags:
-        - AI
-      description: Get last 10 event queue messages for an AI tool
+        - AI Services
+      description: Peek 1 message from AI tool's event queue
       parameters:
         - name: ai-tool
           in: query
@@ -17469,6 +17469,18 @@ paths:
             type: string
           required: true
           description: AI tool name
+        - name: waitTimeSeconds
+          in: query
+          schema:
+            type: integer
+          required: false
+          description: optional, default is 10 seconds
+        - name: visibilityTimeout
+          in: query
+          schema:
+            type: integer
+          required: false
+          description: optional, default is 60 seconds
       responses:
         '200':
           description: Successful response
@@ -17489,10 +17501,9 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/errorResponse' }
-  /pcn/ai-services/event-queue/messages/{messageId}:
     delete:
       tags:
-        - AI
+        - AI Services
       description: Delete a message from the AI tool event queue
       parameters:
         - name: ai-tool
@@ -17501,12 +17512,12 @@ paths:
             type: string
           required: true
           description: AI tool name
-        - name: messageId
-          in: path
+        - name: receiptHandle
+          in: query
           schema:
             type: string
           required: true
-          description: message id
+          description: receiptHandle of SQS message
       responses:
         '200':
           description: Successful response
