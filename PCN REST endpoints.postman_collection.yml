@@ -263,6 +263,58 @@ components:
         resourceAccess:
           type: array
           items: { $ref: "#/components/schemas/ResourceAccess" }
+    IncludedRoleTemplate:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        tenant:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Tenant'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_client'
+          readOnly: true
+        role:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Role'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_role'
+        roleTemplate:
+          $ref: "#/components/schemas/RoleTemplate"
+        isActive:
+          type: boolean
+          description: Active status
+          example: true
     Role:
       description: Security role for role based access control
       type: object
@@ -342,6 +394,51 @@ components:
         resourceAccess:
           type: array
           items: { $ref: "#/components/schemas/ResourceAccess" }
+    RoleTemplate:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: record id
+          readOnly: true
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        tenant:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Tenant'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_client'
+          readOnly: true
+        name:
+          type: string
+          description: Alphanumeric identifier of the entity
+        description:
+          type: string
+          description: Optional short description of the record
+        isActive:
+          type: boolean
+          description: Active status
+          example: true
+        resourceAccess:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceAccess'
     UserRole:
       description: Role assignment to user
       type: object
@@ -5808,7 +5905,7 @@ components:
         award_date:
           type: string
           format: date
-          example: 2025-09-29
+          example: 2025-10-28
         supplier:
           type: object
           properties:
@@ -5837,7 +5934,7 @@ components:
           type: string
           format: date-time
           description: Date this record was updated
-          example: 2025-09-29T17:39:19Z
+          example: 2025-10-28T14:07:21Z
           readOnly: true
         modified_by:
           type: object
@@ -5863,7 +5960,7 @@ components:
           type: string
           format: date-time
           description: Date this record was created
-          example: 2025-09-29T17:39:19Z
+          example: 2025-10-28T14:07:21Z
           readOnly: true
         created_by:
           type: object
@@ -5915,6 +6012,39 @@ components:
         is_active:
           type: boolean
           description: The record is active in the system
+        evaluation_status:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Status'
+            id:
+              type: string
+              description: list item id
+              enum:
+                - 'COMPLETE'
+                - 'FINISHED'
+                - 'QUEUED'
+                - 'RUNNING'
+            identifier:
+              type: string
+              description: list item identifier
+              enum:
+                - 'COMPLETE'
+                - 'FINISHED'
+                - 'QUEUED'
+                - 'RUNNING'
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_ref_list'
+        missions:
+          type: array
+          items:
+            $ref: '#/components/schemas/missionContracts'
     criterionRequirements:
       type: object
       properties:
@@ -7594,6 +7724,26 @@ components:
               enum:
                  - 'ad_user'
           readOnly: true
+    findingTypes:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: record id
+          readOnly: true
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        value:
+          type: string
+          description: Search key for the record in the format required - must be unique
+        name:
+          type: string
+          description: Alphanumeric identifier of the entity
+        description:
+          type: string
+          description: Optional short description of the record
     findingStatuses:
       type: object
       properties:
@@ -7641,7 +7791,24 @@ components:
               enum:
                  - 'pcn_evaluationassessment'
         finding_type:
-          type: string
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Finding Type'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_findingtype'
         subtype:
           type: string
         description:
@@ -7676,24 +7843,24 @@ components:
           type: string
           format: date-time
           description: Date this record was created
-          example: 2025-10-08T15:45:26Z
+          example: 2025-10-28T13:06:39Z
           readOnly: true
         modified:
           type: string
           format: date-time
           description: Date this record was updated
-          example: 2025-10-08T15:45:26Z
+          example: 2025-10-28T13:06:39Z
           readOnly: true
         due_date:
           type: string
           format: date
-          example: 2025-10-08
+          example: 2025-10-28
         resolution:
           type: string
         resolved:
           type: string
           format: date-time
-          example: 2025-10-08T15:45:26Z
+          example: 2025-10-28T13:06:39Z
         resolved_by:
           type: object
           properties:
@@ -9139,6 +9306,58 @@ paths:
                  isActive: true
                  model-name: ad_role
                  view-name: roles
+  /views/roleTemplates/{id}:
+    get:
+      tags:
+        - User and Role
+      summary: Get role template by id
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          description: Role id
+          example: '{ad_role_id}'
+        - $ref: "#/components/parameters/expand"
+        - $ref: "#/components/parameters/select"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+               schema: { $ref: "#/components/schemas/RoleTemplate" }
+               example:
+                 id: 1000000
+                 uid: 322f1e23-ee0e-4a21-8ccb-8a674c6c62e4
+                 tenant:
+                   propertyLabel: Client
+                   id: 11
+                   identifier: GardenWorld
+                   model-name: ad_client
+                 name: Role Editor
+                 description: Role Editor
+                 isActive: true
+                 model-name: ad_role
+                 view-name: roleTemplates
+                 resourceAccess:
+                   - uid: 9bb65996-4426-4fe4-b950-c9c891a9dddd
+                     tenant:
+                       propertyLabel: Client
+                       id: 11
+                       identifier: GardenWorld
+                       model-name: ad_client
+                     httpMethods:
+                       propertyLabel: HTTP Methods
+                       id: GET,POST,PUT,DELETE
+                       identifier: Get, Post, Put, Delete
+                       model-name: ad_ref_list
+                     resource:
+                       propertyLabel: Rest Resource
+                       id: 1000000
+                       identifier: v1/models/ad_roles\\b/?.* | Role Model Resource
+                       model-name: rest_resource
+                     isActive: true
   /views/users/{id}:
     get:
       tags:
@@ -9507,6 +9726,80 @@ paths:
                         isActive: true
                         model-name: ad_role
                         view-name: roles
+  /views/roleTemplates:
+    get:
+      tags:
+        - User and Role
+      summary: Get all role template records or role template records that match the $filter criteria parameter
+      parameters:
+        - $ref: "#/components/parameters/expand"
+        - $ref: "#/components/parameters/select"
+        - $ref: "#/components/parameters/filter"
+        - $ref: "#/components/parameters/orderby"
+        - $ref: "#/components/parameters/top"
+        - $ref: "#/components/parameters/skip"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+               schema:
+                  type: object
+                  properties:
+                    page-count:
+                      type: integer
+                      description: Page count
+                      example: 1
+                    records-size:
+                      type: integer
+                      description: Number of records per page
+                      example: 100
+                    skip-records:
+                      type: integer
+                      description: Number of records skipped
+                      example: 0
+                    row-count:
+                      type: integer
+                      description: Total number of rows
+                      example: 10
+                    array-count:
+                      type: integer
+                      description: Array count
+                      example: 0
+                    records:
+                      type: array
+                      items: { $ref: "#/components/schemas/RoleTemplate" }
+                  example:
+                    page-count: 1
+                    records-size: 100
+                    skip-records: 0
+                    row-count: 2
+                    array-count: 0
+                    records:
+                      - id: 1000000
+                        uid: 322f1e23-ee0e-4a21-8ccb-8a674c6c62e4
+                        tenant:
+                          propertyLabel: Client
+                          id: 11
+                          identifier: GardenWorld
+                          model-name: ad_client
+                        name: Role Editor
+                        description: Role Editor
+                        isActive: true
+                        model-name: ad_role
+                        view-name: roleTemplates
+                      - id: 1000001
+                        uid: d9507a38-d669-4ea2-8e26-51c16614b935
+                        tenant:
+                          propertyLabel: Client
+                          id: 11
+                          identifier: GardenWorld
+                          model-name: ad_client
+                        name: User Editor
+                        description: User Editor
+                        isActive: true
+                        model-name: ad_role
+                        view-name: roleTemplates
   /views/users:
     get:
       tags:
@@ -19376,6 +19669,141 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/aiResults' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/findingTypes/{id}:
+    get:
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/findingTypes' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/findingTypes' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/findingTypes' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/findingTypes:
+    get:
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/findingTypes' }
+    post:
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/findingTypes' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/findingTypes' }
         '500':
           description: Error response
           content:
