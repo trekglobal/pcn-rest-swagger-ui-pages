@@ -339,6 +339,77 @@ components:
           type: boolean
           description: Active status
           example: true
+    OrgAccess:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        tenant:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Tenant'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_client'
+          readOnly: true
+        organization:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Organization'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_org'
+        role:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Role'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_role'
+        isActive:
+          type: boolean
+          description: The record is active in the system
+        isReadOnly:
+          type: boolean
+          description: Field is read only
     Role:
       description: Security role for role based access control
       type: object
@@ -380,25 +451,79 @@ components:
           type: string
           description: Description
           example: GardenWorld User
+        isManual:
+          type: boolean
+          description: This is a manual process
+        roleType:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Role Type'
+            id:
+              type: string
+              description: list item id
+              enum:
+                - 'E1'
+                - 'E2'
+                - 'E3'
+                - 'E4'
+                - 'E5'
+                - 'MO'
+                - 'SW'
+                - 'SS'
+                - 'WS'
+                - 'ZK'
+            identifier:
+              type: string
+              description: list item identifier
+              enum:
+                - 'External App 1'
+                - 'External App 2'
+                - 'External App 3'
+                - 'External App 4'
+                - 'External App 5'
+                - 'Mobile'
+                - 'Swing'
+                - 'System Support'
+                - 'WebService'
+                - 'WebUI'
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_ref_list'
         userLevel:
           type: object
           properties:
-            propertyLabel:
+            propertyLabel: 
               type: string
-              description: Property label
-              example: User Level
+              readOnly: true
+              enum:
+                 - 'User Level'
             id:
-              type: string 
-              description: Identifier
-              example: "  O" # " C" (Client), " CO" (Client+Organization), "  O" (Organization) or "S  " (System) 
+              type: string
+              description: list item id
+              enum:
+                - ' C '
+                - ' CO'
+                - '  O'
+                - 'S  '
             identifier:
               type: string
-              description: Identifier
-              example: Organization
+              description: list item identifier
+              enum:
+                - 'Client'
+                - 'Client+Organization'
+                - 'Organization'
+                - 'System'
             model-name:
               type: string
-              description: /models/{model-name}
-              example: ad_ref_list
+              readOnly: true
+              enum:
+                 - 'ad_ref_list'
         isAccessAdvanced:
           type: boolean
           description: Is access advanced?
@@ -417,7 +542,16 @@ components:
           example: roles
         resourceAccess:
           type: array
-          items: { $ref: "#/components/schemas/ResourceAccess" }
+          items:
+            $ref: '#/components/schemas/ResourceAccess'
+        roleTemplates:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncludedRoleTemplate'
+        orgAccess:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrgAccess'
     RoleTemplate:
       type: object
       properties:
@@ -6663,7 +6797,7 @@ components:
                  - 'ad_user'
         is_watcher:
           type: boolean
-    threadEvaluationAssessments:
+    threadCriterionEvaluations:
       type: object
       properties:
         uid:
@@ -6731,13 +6865,13 @@ components:
           type: string
           format: date-time
           description: Date this record was created
-          example: 2025-10-31T22:11:28Z
+          example: 2025-11-17T16:14:39Z
           readOnly: true
         modified:
           type: string
           format: date-time
           description: Date this record was updated
-          example: 2025-10-31T22:11:28Z
+          example: 2025-11-17T16:14:39Z
           readOnly: true
         created_by:
           type: object
@@ -7994,6 +8128,27 @@ paths:
                  model-name: ad_user
                  view-name: users
                  password: generatedPassword
+  /pcn/users/{id}:
+    get:
+      tags:
+        - User and Role
+      summary: Get user by id
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          description: integer user id, string user uuid or session for authenticated user of current session
+          example: '{ad_user_id}'
+        - $ref: "#/components/parameters/expand"
+        - $ref: "#/components/parameters/select"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+               schema: { $ref: "#/components/schemas/User" }
   /pcn/images/{id}:
     get:
       tags:
@@ -9157,6 +9312,7 @@ paths:
           schema:
             type: string
           required: true
+          description: integer tenant id, string tenant uuid or session for authenticated tenant of current session
           example: '{ad_client_id}'
       responses:
         '200':
@@ -19822,11 +19978,11 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/errorResponse' }
-  /views/threadEvaluationAssessments/{id}:
+  /views/threadCriterionEvaluations/{id}:
     get:
       tags:
         - Thread
-      summary: Get a thread evaluation assessment record
+      summary: Get a thread criterion evaluation record
       parameters:
         - name: id
           in: path
@@ -19843,7 +19999,7 @@ paths:
           description: Successful response
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/threadEvaluationAssessments' }
+              schema: { $ref: '#/components/schemas/threadCriterionEvaluations' }
         '404':
           description: Not found response
           content:
@@ -19852,11 +20008,11 @@ paths:
     put:
       tags:
         - Thread
-      summary: Update thread evaluation assessment by id
+      summary: Update thread criterion evaluation by id
       requestBody:
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/threadEvaluationAssessments' }
+              schema: { $ref: '#/components/schemas/threadCriterionEvaluations' }
       parameters:
         - name: id
           in: path
@@ -19871,7 +20027,7 @@ paths:
           description: Successful response
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/threadEvaluationAssessments' }
+              schema: { $ref: '#/components/schemas/threadCriterionEvaluations' }
         '404':
           description: Not found response
           content:
@@ -19885,7 +20041,7 @@ paths:
     delete:
       tags:
         - Thread
-      summary: Delete thread evaluation assessment by id
+      summary: Delete thread criterion evaluation by id
       parameters:
         - name: id
           in: path
@@ -19917,11 +20073,11 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/errorResponse' }
-  /views/threadEvaluationAssessments:
+  /views/threadCriterionEvaluations:
     get:
       tags:
         - Thread
-      summary: Get thread evaluation assessment records
+      summary: Get thread criterion evaluation records
       parameters:
         - $ref: '#/components/parameters/expand'
         - $ref: '#/components/parameters/select'
@@ -19952,21 +20108,21 @@ paths:
                     type: integer
                   records:
                     type: array
-                    items: { $ref: '#/components/schemas/threadEvaluationAssessments' }
+                    items: { $ref: '#/components/schemas/threadCriterionEvaluations' }
     post:
       tags:
         - Thread
-      summary: Create a thread evaluation assessment
+      summary: Create a thread criterion evaluation
       requestBody:
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/threadEvaluationAssessments' }
+              schema: { $ref: '#/components/schemas/threadCriterionEvaluations' }
       responses:
         '201':
           description: Successful response
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/threadEvaluationAssessments' }
+              schema: { $ref: '#/components/schemas/threadCriterionEvaluations' }
         '500':
           description: Error response
           content:
