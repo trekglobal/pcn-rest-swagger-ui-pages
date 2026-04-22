@@ -47,6 +47,7 @@ tags:
   - name: Requirement
   - name: Claim Import
   - name: Claim
+  - name: Selective Disclosure Agreement
   - name: Evidence
   - name: Review
   - name: Claim Evaluation
@@ -54,6 +55,22 @@ tags:
   - name: Finding
   - name: Thread
   - name: Thread Message
+  - name: App User Preference
+  - name: App User View Mode
+  - name: App User Notification Preference
+  - name: App User Onboarding
+  - name: App User Onboarding Step
+  - name: App User Activity Log
+  - name: App User Notification
+  - name: App User Saved Item
+  - name: App User Dashboard Layout
+  - name: App User Storage Connection
+  - name: App Group Type
+  - name: App Asset Group
+  - name: App Asset Group Member
+  - name: App Group Audit Log
+  - name: App Data Retention Policy
+  - name: Qualified Storage
 components:
   securitySchemes:
     bearerAuth: # arbitrary name for the security scheme
@@ -7143,6 +7160,2008 @@ components:
           type: string
           format: date-time
           example: 2025-10-31T22:18:02Z
+    selectiveDisclosureAgreementConditions:
+      type: object
+      properties:
+        intentType:
+          type: string
+        audienceType:
+          type: string
+        partnerId:
+          type: string
+        partnerOrg:
+          type: string
+        disclosureType:
+          type: string
+        selectedObjectIds:
+          type: array
+          items:
+            type: string
+        fieldSelectionsPerNode:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    selectiveDisclosureAgreements:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        platformId:
+          type: string
+        PIN:
+          type: string
+        intentType:
+          type: string
+        audienceType:
+          type: string
+        partnerId:
+          type: string
+        partnerOrg:
+          type: string
+        disclosureType:
+          type: string
+        selectedObjectIds:
+          type: array
+          items:
+            type: string
+        fieldSelectionsPerNode:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/selectiveDisclosureAgreementConditions'
+        reviewRequired:
+          type: boolean
+        expirationDate:
+          type: string
+          format: date-time
+        numberOfUsers:
+          type: string
+        programId:
+          type: string
+        isActive:
+          type: boolean
+    
+    appUserPreferences:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        tenant_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Tenant'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_client'
+          readOnly: true
+        user_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'User/Contact'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+        theme:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Theme'
+            id:
+              type: string
+              description: list item id
+              enum:
+                - 'dark'
+                - 'light'
+                - 'system'
+            identifier:
+              type: string
+              description: list item identifier
+              enum:
+                - 'dark'
+                - 'light'
+                - 'system'
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_ref_list'
+        language:
+          type: string
+          description: Lower-case two-letter ISO-3166 code - http://www.ics.uci.edu/pub/ietf/http/related/iso639.txt 
+        region:
+          type: string
+          description: Upper-case two-letter alphanumeric ISO Country code according to ISO 3166-1
+        timezone:
+          type: string
+          description: Time zone name
+        date_format:
+          type: string
+          description: Java Date Pattern
+        time_format:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Time Format'
+            id:
+              type: string
+              description: list item id
+              enum:
+                - '12h'
+                - '24h'
+            identifier:
+              type: string
+              description: list item identifier
+              enum:
+                - '12h'
+                - '24h'
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_ref_list'
+        compact_mode:
+          type: boolean
+        animations_enabled:
+          type: boolean
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2026-04-10T14:24:50Z
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2026-04-10T14:24:50Z
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+    appUserViewModes:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        tenant_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Tenant'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_client'
+          readOnly: true
+        user_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'User/Contact'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+        section:
+          type: string
+        view_mode:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'View Mode'
+            id:
+              type: string
+              description: list item id
+              enum:
+                - 'card'
+                - 'grid'
+                - 'list'
+            identifier:
+              type: string
+              description: list item identifier
+              enum:
+                - 'card'
+                - 'grid'
+                - 'list'
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_ref_list'
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2026-04-10T14:27:12Z
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+    appUserNotificationPreferences:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        tenant_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Tenant'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_client'
+          readOnly: true
+        user_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'User/Contact'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+        notification_type:
+          type: string
+        channel:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Notification Channel'
+            id:
+              type: string
+              description: list item id
+              enum:
+                - 'email'
+                - 'in_app'
+                - 'push'
+            identifier:
+              type: string
+              description: list item identifier
+              enum:
+                - 'email'
+                - 'in_app'
+                - 'push'
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_ref_list'
+        enabled:
+          type: boolean
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2026-04-10T14:34:47Z
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+    appUserOnboardings:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        tenant_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Tenant'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_client'
+          readOnly: true
+        user_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'User/Contact'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+        is_complete:
+          type: boolean
+          description: It is complete
+        completed_at:
+          type: string
+          format: date-time
+          example: 2026-04-10T14:44:39Z
+        dismissed:
+          type: boolean
+        dismissed_at:
+          type: string
+          format: date-time
+          example: 2026-04-10T14:44:39Z
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2026-04-10T14:44:39Z
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2026-04-10T14:44:39Z
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+    appUserOnboardingSteps:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        tenant_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Tenant'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_client'
+          readOnly: true
+        user_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'User/Contact'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+        step:
+          type: string
+        completed_at:
+          type: string
+          format: date-time
+          example: 2026-04-10T14:47:29Z
+    appUserActivityLogs:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        tenant_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Tenant'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_client'
+          readOnly: true
+        user_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'User/Contact'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+        action:
+          type: string
+        resource_type:
+          type: string
+        resource_id:
+          type: string
+        resource_name:
+          type: string
+        resource_subtype:
+          type: string
+        metadata:
+          type: string
+          description: Json data
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2026-04-10T14:50:20Z
+          readOnly: true
+    appUserNotifications:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        tenant_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Tenant'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_client'
+          readOnly: true
+        user_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'User/Contact'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+        activity_id:
+          type: string
+        read_at:
+          type: string
+          format: date-time
+          example: 2026-04-10T14:53:22Z
+    appUserSavedItems:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        tenant_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Tenant'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_client'
+          readOnly: true
+        user_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'User/Contact'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+        item_type:
+          type: string
+        item_id:
+          type: string
+        label:
+          type: string
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2026-04-10T14:56:30Z
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2026-04-10T14:56:30Z
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+    appUserDashboardLayouts:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        tenant_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Tenant'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_client'
+          readOnly: true
+        user_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'User/Contact'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+        persona:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Persona'
+            id:
+              type: string
+              description: list item id
+              enum:
+                - 'admin'
+                - 'buyer'
+                - 'overseer'
+                - 'seller'
+            identifier:
+              type: string
+              description: list item identifier
+              enum:
+                - 'admin'
+                - 'buyer'
+                - 'overseer'
+                - 'seller'
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_ref_list'
+        layout:
+          type: string
+          description: Json data
+        schema_version:
+          type: integer
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2026-04-10T14:59:07Z
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2026-04-10T14:59:07Z
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+    appUserStorageConnections:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        tenant_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Tenant'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_client'
+          readOnly: true
+        user_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'User/Contact'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+        provider:
+          type: string
+        display_name:
+          type: string
+        endpoint:
+          type: string
+        external_secret_ref:
+          type: string
+        is_active:
+          type: boolean
+          description: The record is active in the system
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2026-04-10T15:01:50Z
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2026-04-10T15:01:50Z
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+    appGroupTypes:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        tenant_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Tenant'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_client'
+          readOnly: true
+        code:
+          type: string
+        label:
+          type: string
+        description:
+          type: string
+          description: Optional short description of the record
+        allows_hierarchy:
+          type: boolean
+        allows_content:
+          type: boolean
+        is_active:
+          type: boolean
+          description: The record is active in the system
+        sort_order:
+          type: integer
+        row_version:
+          type: integer
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2026-04-10T15:07:23Z
+          readOnly: true
+        created_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Created By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2026-04-10T15:07:23Z
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        search_vector:
+          type: string
+    appAssetGroups:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        tenant_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Tenant'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_client'
+          readOnly: true
+        group_type_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'PCN_APP_AssetGroupType_UU'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_app_assetgrouptype'
+        parent_group_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Parent Asset Group'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_app_assetgroup'
+        organization_external_id:
+          type: string
+        name:
+          type: string
+          description: Alphanumeric identifier of the entity
+        description:
+          type: string
+          description: Optional short description of the record
+        status:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Status'
+            id:
+              type: string
+              description: list item id
+              enum:
+                - 'active'
+                - 'archived'
+                - 'draft'
+                - 'expired'
+                - 'suspended'
+            identifier:
+              type: string
+              description: list item identifier
+              enum:
+                - 'active'
+                - 'archived'
+                - 'draft'
+                - 'expired'
+                - 'suspended'
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_ref_list'
+        row_version:
+          type: integer
+        effective_date:
+          type: string
+          format: date
+          example: 2026-04-10
+        expiry_date:
+          type: string
+          format: date
+          example: 2026-04-10
+        tags:
+          type: string
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2026-04-10T15:09:47Z
+          readOnly: true
+        created_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Created By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2026-04-10T15:09:47Z
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        deleted:
+          type: string
+          format: date-time
+          example: 2026-04-10T15:09:47Z
+        deleted_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Deleted By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+        search_vector:
+          type: string
+    appAssetGroupMembers:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        tenant_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Tenant'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_client'
+          readOnly: true
+        asset_group_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'PCN_APP_AssetGroup_UU'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_app_assetgroup'
+        asset_id:
+          type: string
+        asset_type:
+          type: string
+        role:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Role'
+            id:
+              type: string
+              description: list item id
+              enum:
+                - 'delegate'
+                - 'member'
+                - 'observer'
+                - 'owner'
+            identifier:
+              type: string
+              description: list item identifier
+              enum:
+                - 'delegate'
+                - 'member'
+                - 'observer'
+                - 'owner'
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_ref_list'
+        status:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Status'
+            id:
+              type: string
+              description: list item id
+              enum:
+                - 'active'
+                - 'inactive'
+                - 'pending'
+            identifier:
+              type: string
+              description: list item identifier
+              enum:
+                - 'active'
+                - 'inactive'
+                - 'pending'
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_ref_list'
+        joined_at:
+          type: string
+          format: date-time
+          example: 2026-04-10T15:13:21Z
+        left_at:
+          type: string
+          format: date-time
+          example: 2026-04-10T15:13:21Z
+        row_version:
+          type: integer
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2026-04-10T15:13:21Z
+          readOnly: true
+        created_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Created By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2026-04-10T15:13:21Z
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+    appGroupAuditLogs:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        tenant_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Tenant'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_client'
+          readOnly: true
+        entity_type:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Table'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_table'
+        entity_id:
+          type: string
+        group_type_code:
+          type: string
+        action:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Group Action'
+            id:
+              type: string
+              description: list item id
+              enum:
+                - 'created'
+                - 'deleted'
+                - 'member_added'
+                - 'member_removed'
+                - 'status_changed'
+                - 'updated'
+            identifier:
+              type: string
+              description: list item identifier
+              enum:
+                - 'created'
+                - 'deleted'
+                - 'member_added'
+                - 'member_removed'
+                - 'status_changed'
+                - 'updated'
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_ref_list'
+        previous_state:
+          type: string
+          description: Json data
+        new_state:
+          type: string
+          description: Json data
+        changed_fields:
+          type: string
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2026-04-10T15:16:30Z
+          readOnly: true
+        created_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Created By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        ip_address:
+          type: string
+          description: Defines the IP address to transfer data to
+        user_agent:
+          type: string
+          description: Browser Used
+    appDataRetentionPolicies:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        tenant_id:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Tenant'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_client'
+          readOnly: true
+        table_name:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Table'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_table'
+        retention_months:
+          type: integer
+        archive_after_months:
+          type: integer
+        policy_basis:
+          type: string
+        is_active:
+          type: boolean
+          description: The record is active in the system
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2026-04-10T15:19:35Z
+          readOnly: true
+        created_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Created By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2026-04-10T15:19:35Z
+          readOnly: true
+        modified_by:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+    storage-provider-regions:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: record id
+          readOnly: true
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        storageProvider:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'PCN Storage Provider'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_storageprovider'
+        name:
+          type: string
+          description: Alphanumeric identifier of the entity
+    storage-provider-types:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: record id
+          readOnly: true
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        storageProvider:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'PCN Storage Provider'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_storageprovider'
+        name:
+          type: string
+          description: Alphanumeric identifier of the entity
+        active:
+          type: boolean
+          description: The record is active in the system
+    storage-providers:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: record id
+          readOnly: true
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        searchKey:
+          type: string
+          description: Search key for the record in the format required - must be unique
+        name:
+          type: string
+          description: Alphanumeric identifier of the entity
+        active:
+          type: boolean
+          description: The record is active in the system
+        regions:
+          type: array
+          items:
+            $ref: '#/components/schemas/storage-provider-regions'
+        types:
+          type: array
+          items:
+            $ref: '#/components/schemas/storage-provider-types'          
+    qualified-storages:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        platformId:
+          type: string
+        PIN:
+          type: string
+          description: Personal Identification Number
+        environmentName:
+          type: string
+        actorId:
+          type: string
+          description: Identier reference of external subject matter
+        storage:
+          $ref: '#/components/schemas/qualified-storages_storage'
+        endpoints:
+          $ref: '#/components/schemas/qualified-storages_endpoints'
+        security:
+          $ref: '#/components/schemas/qualified-storages_security'
+        availability:
+          $ref: '#/components/schemas/qualified-storages_availability'
+        compliance:
+          $ref: '#/components/schemas/qualified-storages_compliance'
+        qsProviderApi:
+          $ref: '#/components/schemas/qualified-storages_qsProviderApi'
+        active:
+          type: boolean
+          description: The record is active in the system
+    qualified-storages_storage:
+      type: object
+      properties:
+        provider:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'PCN Storage Provider'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_storageprovider'
+        type:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'PCN Storage Provider Type'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'pcn_storageprovidertype'
+        accountId:
+          type: string
+          description: Storage account Id
+        regions:
+          oneOf:
+            - type: object
+              required:
+                 - selections
+              properties:
+                propertyLabel: 
+                  type: string
+                  readOnly: true
+                  enum:
+                     - 'Regions'
+                selections: 
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        description: record id
+                      identifier:
+                        type: string
+                        description: record identifier
+                      model-name:
+                        type: string
+                        readOnly: true
+                        enum:
+                           - 'pcn_storageproviderregion'
+            - type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: record id
+                  identifier:
+                    type: string
+                    description: record identifier
+                  model-name:
+                    type: string
+                    readOnly: true
+                    enum:
+                       - 'pcn_storageproviderregion'
+    qualified-storages_endpoints:
+      type: object
+      properties:
+        apiBaseUrl:
+          type: string
+          description: Storage API Base URL endpoint
+        healthUrl:
+          type: string
+          description: Storage Health URL Endpoint
+        statusUrl:
+          type: string
+          description: Storage Status URL Endpoint
+    qualified-storages_security:
+      type: object
+      properties:
+        encryptionAtRest:
+          type: boolean
+        encryptionInTransit:
+          type: boolean
+        tlsMinVersion:
+          type: string
+        leastPrivilegeIam:
+          type: boolean
+        mfaForAdmins:
+          type: boolean
+        auditLoggingEnabled:
+          type: boolean
+    qualified-storages_availability:
+      type: object
+      properties:
+        uptimeSlaPercent:
+          type: number
+        backupPlanDocumented:
+          type: boolean
+        multiRegion:
+          type: boolean
+    qualified-storages_compliance:
+      type: object
+      properties:
+        frameworks:
+          type: array
+          items: 
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the compliance framework
+              status:
+                type: string
+                enum:
+                   - 'CERTIFIED'
+                   - 'NOT_CERTIFIED'
+                   - 'IN_PROGRESS'
+          description: List of Compliance Frameworks
+        dataResidencyCountries:
+          oneOf:
+            - type: object
+              properties:
+                propertyLabel: 
+                  type: string
+                  readOnly: true
+                  enum:
+                     - 'Data Residency Countries'
+                selections: 
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        description: record id
+                      identifier:
+                        type: string
+                        description: record identifier
+                      model-name:
+                        type: string
+                        readOnly: true
+                        enum:
+                           - 'c_country'
+            - type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: record id
+                  identifier:
+                    type: string
+                    description: record identifier
+                  model-name:
+                    type: string
+                    readOnly: true
+                    enum:
+                       - 'c_country'
+    qualified-storages_qsProviderApi:
+      type: object
+      properties:
+        oauthTokenUrl:
+          type: string
+        grantType:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Grant Type'
+            id:
+              type: string
+              description: list item id
+              enum:
+                - 'AUTHORIZATION_CODE'
+                - 'CLIENT_CREDENTIALS'
+            identifier:
+              type: string
+              description: list item identifier
+              enum:
+                - 'Authorization Code'
+                - 'Client Credentials'
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_ref_list'
+        implementsGetObject:
+          type: boolean
+        implementsPutObject:
+          type: boolean
+        implementsDeleteObject:
+          type: boolean
+        implementsGetHash:
+          type: boolean    
 security:
     - bearerAuth: [] # use the same name as above          
 paths:
@@ -20573,6 +22592,2394 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/threadMessageUsers' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/selective-disclosure-agreement/{id}:
+    get:
+      tags:
+        - Selective Disclosure Agreement
+      summary: Get a selective disclosure agreement record
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf:
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/selectiveDisclosureAgreements' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - Selective Disclosure Agreement
+      summary: Update selective disclosure agreement by id
+      description: Use this endpoint for updates and soft delete by setting isActive to false.
+      requestBody:
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/selectiveDisclosureAgreements'
+                  - type: object
+                    properties:
+                      isActive:
+                        type: boolean
+                        example: false
+              examples:
+                updateAgreement:
+                  summary: Update selective disclosure agreement
+                  value:
+                    intentType: receive
+                softDeleteAgreement:
+                  summary: Soft delete selective disclosure agreement
+                  value:
+                    isActive: false
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf:
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/selectiveDisclosureAgreements' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/selective-disclosure-agreement:
+    get:
+      tags:
+        - Selective Disclosure Agreement
+      summary: Get selective disclosure agreement records
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/selectiveDisclosureAgreements' }
+    post:
+      tags:
+        - Selective Disclosure Agreement
+      summary: Create a selective disclosure agreement
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/selectiveDisclosureAgreements' }
+              examples:
+                createAgreement:
+                  summary: Create selective disclosure agreement request
+                  value:
+                    platformId: uuid
+                    PIN: network-id
+                    intentType: disclose
+                    audienceType: party
+                    partnerId: partner-123
+                    partnerOrg: Acme Corp
+                    disclosureType: selective
+                    selectedObjectIds:
+                      - objectId-1
+                      - objectId-2
+                    fieldSelectionsPerNode:
+                      objectId-1:
+                        - field-a
+                        - field-b
+                      objectId-2:
+                        - field-x
+                    conditions:
+                      - intentType: receive
+                        audienceType: criteria
+                        partnerId: partner-456
+                        partnerOrg: Beta Corp
+                        disclosureType: derivative
+                        selectedObjectIds:
+                          - objectId-3
+                        fieldSelectionsPerNode:
+                          node-3:
+                            - field-z
+                    reviewRequired: true
+                    expirationDate: '2026-12-31T23:59:59Z'
+                    numberOfUsers: '25'
+                    programId: program-abc
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/selectiveDisclosureAgreements' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  
+  /views/appUserPreferences/{id}:
+    get:
+      tags:
+        - App User Preference
+      summary: Get an app user preference record
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserPreferences' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - App User Preference
+      summary: Update app user preference by id
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserPreferences' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserPreferences' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - App User Preference
+      summary: Delete app user preference by id
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appUserPreferences:
+    get:
+      tags:
+        - App User Preference
+      summary: Get app user preference records
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/appUserPreferences' }
+    post:
+      tags:
+        - App User Preference
+      summary: Create an app user preference
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserPreferences' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserPreferences' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appUserViewModes/{id}:
+    get:
+      tags:
+        - App User View Mode
+      summary: Get an app user view mode record
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserViewModes' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - App User View Mode
+      summary: Update app user view mode by id
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserViewModes' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserViewModes' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - App User View Mode
+      summary: Delete app user view mode by id
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appUserViewModes:
+    get:
+      tags:
+        - App User View Mode
+      summary: Get app user view mode records
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/appUserViewModes' }
+    post:
+      tags:
+        - App User View Mode
+      summary: Create an app user view mode
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserViewModes' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserViewModes' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appUserNotificationPreferences/{id}:
+    get:
+      tags:
+        - App User Notification Preference
+      summary: Get an app user notification preference record
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserNotificationPreferences' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - App User Notification Preference
+      summary: Update app user notification preference by id
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserNotificationPreferences' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserNotificationPreferences' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - App User Notification Preference
+      summary: Delete app user notification preference by id
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appUserNotificationPreferences:
+    get:
+      tags:
+        - App User Notification Preference
+      summary: Get app user notification preference records
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/appUserNotificationPreferences' }
+    post:
+      tags:
+        - App User Notification Preference
+      summary: Create an app user notification preference
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserNotificationPreferences' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserNotificationPreferences' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appUserOnboardings/{id}:
+    get:
+      tags:
+        - App User Onboarding
+      summary: Get an app user onboarding record
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserOnboardings' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - App User Onboarding
+      summary: Update app user onboarding by id
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserOnboardings' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserOnboardings' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - App User Onboarding
+      summary: Delete app user onboarding by id
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appUserOnboardings:
+    get:
+      tags:
+        - App User Onboarding
+      summary: Get app user onboarding records
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/appUserOnboardings' }
+    post:
+      tags:
+        - App User Onboarding
+      summary: Create an app user onboarding
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserOnboardings' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserOnboardings' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appUserOnboardingSteps/{id}:
+    get:
+      tags:
+        - App User Onboarding Step
+      summary: Get an app user onboarding step record
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserOnboardingSteps' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - App User Onboarding Step
+      summary: Update app user onboarding step by id
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserOnboardingSteps' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserOnboardingSteps' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - App User Onboarding Step
+      summary: Delete app user onboarding step by id
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appUserOnboardingSteps:
+    get:
+      tags:
+        - App User Onboarding Step
+      summary: Get app user onboarding step records
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/appUserOnboardingSteps' }
+    post:
+      tags:
+        - App User Onboarding Step
+      summary: Create an app user onboarding step
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserOnboardingSteps' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserOnboardingSteps' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appUserActivityLogs/{id}:
+    get:
+      tags:
+        - App User Activity Log
+      summary: Get an app user activity log record
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserActivityLogs' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appUserActivityLogs:
+    get:
+      tags:
+        - App User Activity Log
+      summary: Get app user activity log records
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/appUserActivityLogs' }
+  /views/appUserNotifications/{id}:
+    get:
+      tags:
+        - App User Notification
+      summary: Get an app user notification record
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserNotifications' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - App User Notification
+      summary: Update app user notification by id
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserNotifications' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserNotifications' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - App User Notification
+      summary: Delete app user notification by id
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appUserNotifications:
+    get:
+      tags:
+        - App User Notification
+      summary: Get app user notification records
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/appUserNotifications' }
+    post:
+      tags:
+        - App User Notification
+      summary: Create an app user notification
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserNotifications' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserNotifications' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appUserSavedItems/{id}:
+    get:
+      tags:
+        - App User Saved Item
+      summary: Get an app user saved item record
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserSavedItems' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - App User Saved Item
+      summary: Update app user saved item by id
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserSavedItems' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserSavedItems' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - App User Saved Item
+      summary: Delete app user saved item by id
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appUserSavedItems:
+    get:
+      tags:
+        - App User Saved Item
+      summary: Get app user saved item records
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/appUserSavedItems' }
+    post:
+      tags:
+        - App User Saved Item
+      summary: Create an app user saved item
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserSavedItems' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserSavedItems' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appUserDashboardLayouts/{id}:
+    get:
+      tags:
+        - App User Dashboard Layout
+      summary: Get an app user dashboard layout record
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserDashboardLayouts' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - App User Dashboard Layout
+      summary: Update app user dashboard layout by id
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserDashboardLayouts' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserDashboardLayouts' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - App User Dashboard Layout
+      summary: Delete app user dashboard layout by id
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appUserDashboardLayouts:
+    get:
+      tags:
+        - App User Dashboard Layout
+      summary: Get app user dashboard layout records
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/appUserDashboardLayouts' }
+    post:
+      tags:
+        - App User Dashboard Layout
+      summary: Create an app user dashboard layout
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserDashboardLayouts' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserDashboardLayouts' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appUserStorageConnections/{id}:
+    get:
+      tags:
+        - App User Storage Connection
+      summary: Get an app user storage connection record
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserStorageConnections' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - App User Storage Connection
+      summary: Update app user storage connection by id
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserStorageConnections' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserStorageConnections' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - App User Storage Connection
+      summary: Delete app user storage connection by id
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appUserStorageConnections:
+    get:
+      tags:
+        - App User Storage Connection
+      summary: Get app user storage connection records
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/appUserStorageConnections' }
+    post:
+      tags:
+        - App User Storage Connection
+      summary: Create an app user storage connection
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserStorageConnections' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appUserStorageConnections' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appGroupTypes/{id}:
+    get:
+      tags:
+        - App Group Type
+      summary: Get an app group type record
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appGroupTypes' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - App Group Type
+      summary: Update app group type by id
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appGroupTypes' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appGroupTypes' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appGroupTypes:
+    get:
+      tags:
+        - App Group Type
+      summary: Get app group type records
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/appGroupTypes' }
+    post:
+      tags:
+        - App Group Type
+      summary: Create an app group type
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appGroupTypes' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appGroupTypes' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appAssetGroups/{id}:
+    get:
+      tags:
+        - App Asset Group
+      summary: Get an app asset group record
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appAssetGroups' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - App Asset Group
+      summary: Update app asset group by id
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appAssetGroups' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appAssetGroups' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appAssetGroups:
+    get:
+      tags:
+        - App Asset Group
+      summary: Get app asset group records
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/appAssetGroups' }
+    post:
+      tags:
+        - App Asset Group
+      summary: Create an app asset group
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appAssetGroups' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appAssetGroups' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appAssetGroupMembers/{id}:
+    get:
+      tags:
+        - App Asset Group Member
+      summary: Get an app asset group member record
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appAssetGroupMembers' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - App Asset Group Member
+      summary: Update app asset group member by id
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appAssetGroupMembers' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appAssetGroupMembers' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appAssetGroupMembers:
+    get:
+      tags:
+        - App Asset Group Member
+      summary: Get app asset group member records
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/appAssetGroupMembers' }
+    post:
+      tags:
+        - App Asset Group Member
+      summary: Create an app asset group member
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appAssetGroupMembers' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appAssetGroupMembers' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appGroupAuditLogs/{id}:
+    get:
+      tags:
+        - App Group Audit Log
+      summary: Get an app group audit log record
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appGroupAuditLogs' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appGroupAuditLogs:
+    get:
+      tags:
+        - App Group Audit Log
+      summary: Get app group audit log records
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/appGroupAuditLogs' }
+    post:
+      tags:
+        - App Group Audit Log
+      summary: Create an app group audit log
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appGroupAuditLogs' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appGroupAuditLogs' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appDataRetentionPolicies/{id}:
+    get:
+      tags:
+        - App Data Retention Policy
+      summary: Get an app data retention policy record
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appDataRetentionPolicies' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - App Data Retention Policy
+      summary: Update app data retention policy by id
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appDataRetentionPolicies' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appDataRetentionPolicies' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    delete:
+      tags:
+        - App Data Retention Policy
+      summary: Delete app data retention policy by id
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: info or error message
+                    example: 'Deleted'
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/appDataRetentionPolicies:
+    get:
+      tags:
+        - App Data Retention Policy
+      summary: Get app data retention policy records
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/appDataRetentionPolicies' }
+    post:
+      tags:
+        - App Data Retention Policy
+      summary: Create an app data retention policy
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appDataRetentionPolicies' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/appDataRetentionPolicies' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/storage-providers/{id}:
+    get:
+      tags:
+        - Qualified Storage
+      summary: Get a storage provider record
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/storage-providers' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - Qualified Storage
+      summary: Update a storage provider record. For System tenant only.
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/storage-providers' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/storage-providers' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/storage-providers:
+    get:
+      tags:
+        - Qualified Storage
+      summary: Get a list of storage provider records.
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/storage-providers' }
+    post:
+      tags:
+        - Qualified Storage
+      summary: Create a storage provider record. For System tenant only.
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/storage-providers' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/storage-providers' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }              
+  /views/qualified-storages/{id}:
+    get:
+      tags:
+        - Qualified Storage
+      summary: Get a qualified storage record
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/qualified-storages' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+    put:
+      tags:
+        - Qualified Storage
+      summary: Update a qualified storage record
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/qualified-storages' }
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/qualified-storages' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/qualified-storages:
+    get:
+      tags:
+        - Qualified Storage
+      summary: Get qualified storage records
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/qualified-storages' }
+    post:
+      tags:
+        - Qualified Storage
+      summary: Create a qualified storage record
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/qualified-storages' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/qualified-storages' }
         '500':
           description: Error response
           content:
