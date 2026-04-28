@@ -9161,7 +9161,85 @@ components:
         implementsDeleteObject:
           type: boolean
         implementsGetHash:
-          type: boolean    
+          type: boolean
+    qualified-storage-access-logs:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: record uuid
+          readOnly: true
+        external_id:
+          type: string
+          description: Identifier reference of external entity
+        external_org_id:
+          type: string
+        user_id:
+          type: string
+        object_pin:
+          type: string
+        qs_pin:
+          type: string
+        sda_pin:
+          type: string
+        action_type:
+          type: string
+        access_timestamp:
+          type: string
+          format: date-time
+          example: 2026-04-27T10:57:20Z
+        created:
+          type: string
+          format: date-time
+          description: Date this record was created
+          example: 2026-04-27T10:57:20Z
+          readOnly: true
+        createdBy:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Created By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true
+        updated:
+          type: string
+          format: date-time
+          description: Date this record was updated
+          example: 2026-04-27T10:57:20Z
+          readOnly: true
+        updatedBy:
+          type: object
+          properties:
+            propertyLabel: 
+              type: string
+              readOnly: true
+              enum:
+                 - 'Updated By'
+            id:
+              type: integer
+              description: record id
+            identifier:
+              type: string
+              description: record identifier
+            model-name:
+              type: string
+              readOnly: true
+              enum:
+                 - 'ad_user'
+          readOnly: true              
 security:
     - bearerAuth: [] # use the same name as above          
 paths:
@@ -24782,6 +24860,11 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }              
     put:
       tags:
         - Qualified Storage
@@ -24851,6 +24934,11 @@ paths:
                   records:
                     type: array
                     items: { $ref: '#/components/schemas/storage-providers' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }                    
     post:
       tags:
         - Qualified Storage
@@ -24897,6 +24985,11 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }              
     put:
       tags:
         - Qualified Storage
@@ -24966,6 +25059,11 @@ paths:
                   records:
                     type: array
                     items: { $ref: '#/components/schemas/qualified-storages' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }                    
     post:
       tags:
         - Qualified Storage
@@ -24985,3 +25083,120 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/qualified-storage-access-logs/{id}:
+    get:
+      tags:
+        - Qualified Storage
+      summary: Get a qualified storage access log record by id or uuid    
+      parameters:
+        - name: id
+          in: path
+          schema:
+            oneOf: 
+              - type: string
+              - type: integer
+          required: true
+          description: integer record id or string record uuid
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/qualified-storage-access-logs' }
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }              
+  /views/qualified-storage-access-logs:
+    get:
+      tags:
+        - Qualified Storage
+      summary: Get all qualified storage access log records      
+      parameters:
+        - $ref: '#/components/parameters/expand'
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page-count:
+                    type: integer
+                    description: number of page
+                  records-size:
+                    type: integer
+                    description: number of records per page
+                  skip-records:
+                    type: integer
+                  row-count:
+                    type: integer
+                    description: total number of records
+                  array-count:
+                    type: integer
+                  records:
+                    type: array
+                    items: { $ref: '#/components/schemas/qualified-storage-access-logs' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }                    
+    post:
+      tags:
+        - Qualified Storage
+      summary: Create a new qualified storage access log record
+      requestBody:
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/qualified-storage-access-logs' }
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/qualified-storage-access-logs' }
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+  /views/qualified-storage-access-logs/export:
+    get:
+      tags:
+        - Qualified Storage
+      summary: Export qualified storage access log records      
+      parameters:
+        - $ref: '#/components/parameters/select'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/csv:
+              schema:
+                type: string
+                description: Exported CSV data
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/errorResponse' }
+
